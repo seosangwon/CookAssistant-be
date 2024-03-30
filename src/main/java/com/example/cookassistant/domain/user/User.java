@@ -38,7 +38,7 @@ public class User {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "role", nullable = false)
-    private UserRoll role;
+    private UserRole role;
 
     @OneToMany(mappedBy = "user")
     private List<Ingredient> ingredients = new ArrayList<>();
@@ -48,7 +48,7 @@ public class User {
 
 
     @Builder
-    public User(String nickName, String email, String password, UserRoll role) {
+    public User(String nickName, String email, String password, UserRole role) {
         this.nickName = nickName;
         this.email = email;
         this.password = password;

@@ -4,7 +4,7 @@ import com.example.cookassistant.domain.reciepe.Recipe;
 import com.example.cookassistant.domain.reciepe.RecipeRepository;
 import com.example.cookassistant.domain.user.User;
 import com.example.cookassistant.domain.user.UserRepository;
-import com.example.cookassistant.domain.user.UserRoll;
+import com.example.cookassistant.domain.user.UserRole;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +13,6 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
-import java.util.Optional;
 
 
 @SpringBootTest
@@ -37,7 +36,7 @@ public class LikeTest {
                 .email("zmdk1205@naver.com")
                 .nickName("sangwon")
                 .password("1234")
-                .role(UserRoll.USER)
+                .role(UserRole.USER)
                 .build();
 
         Recipe recipe = Recipe.builder()

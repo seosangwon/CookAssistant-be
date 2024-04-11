@@ -2,6 +2,7 @@ package com.example.cookassistant.domain.user;
 
 import com.example.cookassistant.domain.ingredient.Ingredient;
 import com.example.cookassistant.domain.like.Like;
+import com.example.cookassistant.domain.reciepe.Recipe;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -47,6 +48,10 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     private List<Like> likes = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user")
+    private List<Recipe> recipes = new ArrayList<>();
+
 
 
     @Builder

@@ -1,6 +1,7 @@
 package com.example.cookassistant.domain.reciepe;
 
 import com.example.cookassistant.domain.like.Like;
+import com.example.cookassistant.domain.user.User;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -40,13 +41,26 @@ public class Recipe {
     @OneToMany(mappedBy = "recipe")
     private List<Like> likes = new ArrayList<>();
 
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="user_id")
+    private User user;
+
 
     @Builder
-    public Recipe(String name, String content, String imageURL, LocalDateTime createdAt) {
+    public Recipe(String name, String content, String imageURL, LocalDateTime createdAt , User user) {
         this.name = name;
         this.content = content;
         this.imageURL = imageURL;
         this.createdAt = createdAt;
+        this.user=user;
+        setUser(user);
+
+    }
+
+    //연관관계 편의 메서드
+    public void setUser(User user) {
+        user.getRecipes().add(this);
+
     }
 
 

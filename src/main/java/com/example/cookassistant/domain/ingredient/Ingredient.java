@@ -1,6 +1,7 @@
 package com.example.cookassistant.domain.ingredient;
 
 import com.example.cookassistant.domain.user.User;
+import com.example.cookassistant.web.dto.IngredientDto;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -56,6 +57,20 @@ public class Ingredient {
     // 연관관계 편의 메서드
     public void setIngredient(User user) {
         user.getIngredients().add(this);
+    }
+
+    /**
+     * 비즈니스 로직
+     * 1.update
+     */
+    public void update(IngredientDto.UpdateRequestDto requestDto) {
+        this.name = requestDto.getName();
+        this.quantity = requestDto.getQuantity();
+        this.expirationDate = requestDto.getExpirationDate();
+        this.imageURL = requestDto.getImageURL();
+        this.type = requestDto.getType();
+
+
     }
 
 

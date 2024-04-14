@@ -2,6 +2,7 @@ package com.example.cookassistant.domain.reciepe;
 
 import com.example.cookassistant.domain.like.Like;
 import com.example.cookassistant.domain.user.User;
+import com.example.cookassistant.web.dto.RecipeDto;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -29,6 +30,7 @@ public class Recipe {
 
 
     @Column(nullable = false)
+    @Lob
     private String content;
 
     @Column(name = "image_URL")
@@ -38,7 +40,7 @@ public class Recipe {
     @Column(nullable = false)
     private LocalDateTime createdAt;
 
-    @OneToMany(mappedBy = "recipe")
+    @OneToMany(mappedBy = "recipe",cascade = CascadeType.REMOVE)
     private List<Like> likes = new ArrayList<>();
 
     @ManyToOne(fetch=FetchType.LAZY)
@@ -64,4 +66,10 @@ public class Recipe {
     }
 
 
+    public void update(RecipeDto.UpdateRequestDto requestDto) {
+        this.name=requestDto.getName();
+        this.content= requestDto.getContent();
+        this.imageURL= requestDto.getImageURL();
+        this.createdAt=requestDto.getCreatedAt();
+    }
 }

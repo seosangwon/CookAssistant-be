@@ -46,7 +46,7 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Ingredient> ingredients = new ArrayList<>();
 
-    @OneToMany(mappedBy = "user",cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "user")
     private List<Like> likes = new ArrayList<>();
 
     @OneToMany(mappedBy = "user")

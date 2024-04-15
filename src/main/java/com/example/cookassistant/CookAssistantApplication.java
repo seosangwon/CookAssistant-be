@@ -12,6 +12,7 @@ public class CookAssistantApplication {
         SpringApplication.run(CookAssistantApplication.class, args);
 
 
+
     }
 
 }

@@ -32,10 +32,14 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     //lombok
     compileOnly 'org.projectlombok:lombok'
+
     //h2
     runtimeOnly 'com.h2database:h2'
+
     //MySQL
-    //runtimeOnly 'com.mysql:mysql-connector-j'
+    runtimeOnly 'com.mysql:mysql-connector-j'
+
+
     //lombok
     annotationProcessor 'org.projectlombok:lombok'
     //springboot

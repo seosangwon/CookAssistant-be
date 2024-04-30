@@ -15,7 +15,7 @@ public class RecipeDto {
         private String name;
         private String content;
         private String imageURL;
-        private LocalDateTime createdAt;
+        private LocalDateTime createdAt; // 빼야 하는거 아닌가? , 프론트한테 시각을 받을 일이 없음
 
 
     }

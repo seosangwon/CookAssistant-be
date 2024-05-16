@@ -2,6 +2,7 @@ package com.example.cookassistant.domain.user;
 
 import com.example.cookassistant.web.dto.UserDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -11,6 +12,7 @@ import java.util.Optional;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final BCryptPasswordEncoder passwordEncoder;
 
     //유저 생성 createUser
     public UserDto.SaveResponseDto createUser(UserDto.SaveRequestDto requestDto) {
@@ -22,7 +24,7 @@ public class UserService {
             User user = User.builder()
                     .email(requestDto.getEmail())
                     .nickName(requestDto.getNickName())
-                    .password(requestDto.getPassword())
+                    .password(passwordEncoder.encode(requestDto.getPassword()))
                     .role(requestDto.getRole())
                     .build();
 

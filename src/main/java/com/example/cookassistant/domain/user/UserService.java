@@ -1,6 +1,7 @@
 package com.example.cookassistant.domain.user;
 
 import com.example.cookassistant.web.dto.UserDto;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -40,6 +41,22 @@ public class UserService {
 
     }
 
+    //유저 로그인
+//    public UserDto.LoginResponseDto loginUser(UserDto.LoginRequestDto requestDto) {
+//        Optional<User> optionalUser = userRepository.findByEmail(requestDto.getEmail());
+//        if (optionalUser.isPresent()) {
+//            User findUser = optionalUser.get();
+//            if (!passwordEncoder.matches(requestDto.getPassword(), findUser.getPassword())) {
+//                throw new IllegalArgumentException("잘못된 비밀번호 입니다 ");
+//            }
+//        } else {
+//            throw new EntityNotFoundException("해당 이메일로 가입한 유저가 없습니다 ");
+//        }
+//
+//        return
+//
+//    }
+//
 
 
 

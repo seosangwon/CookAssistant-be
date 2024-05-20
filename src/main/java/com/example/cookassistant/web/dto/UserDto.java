@@ -28,4 +28,16 @@ public class UserDto {
         private UserRole role = UserRole.USER;
 
     }
+
+
+    @Data
+    public static class LoginRequestDto {
+        private String email;
+        private String password;
+
+    }
+
+    @Data
+    public static class LoginResponseDto {
+    }
 }

@@ -27,6 +27,7 @@ public class UserDto {
         private String password;
         private UserRole role = UserRole.USER;
 
+
     }
 
 

@@ -16,9 +16,5 @@ public class CookAssistantApplication {
 
     }
 
-    @Bean
-    public ObjectMapper objectMapper() {
-        return new ObjectMapper();
-    }
 
 }

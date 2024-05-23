@@ -3,6 +3,7 @@ package com.example.cookassistant.domain.user;
 import com.example.cookassistant.domain.ingredient.Ingredient;
 import com.example.cookassistant.domain.like.Like;
 import com.example.cookassistant.domain.reciepe.Recipe;
+import com.example.cookassistant.util.Util;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -16,6 +17,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 
 @Entity
@@ -86,6 +88,17 @@ public class User {
         return authorities;
 
     }
+
+    //토큰에 담아낼 user 정보들 추출
+    public Map<String, Object> getAccessTokenClaims() {
+        return Util.mapOf(
+                "id", getId(),
+                "username", getNickName(),
+                "email", getEmail(),
+                "authorities", getAuthorities()
+        );
+    }
+
 
 
 

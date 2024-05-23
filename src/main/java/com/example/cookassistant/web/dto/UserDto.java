@@ -1,6 +1,8 @@
 package com.example.cookassistant.web.dto;
 
 import com.example.cookassistant.domain.user.UserRole;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Builder;
 import lombok.Data;
 
@@ -33,8 +35,11 @@ public class UserDto {
 
     @Data
     public static class LoginRequestDto {
+        @Email @NotBlank
         private String email;
+        @NotBlank
         private String password;
+
 
     }
 

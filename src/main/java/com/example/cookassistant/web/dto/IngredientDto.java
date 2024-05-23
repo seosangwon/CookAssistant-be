@@ -2,6 +2,7 @@ package com.example.cookassistant.web.dto;
 
 import com.example.cookassistant.domain.ingredient.Ingredient;
 import com.example.cookassistant.domain.user.User;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Builder;
 import lombok.Data;
 
@@ -12,11 +13,13 @@ public class IngredientDto {
     @Data
     public static class SaveRequestDto {
 
+        @NotBlank
         private String name;
         private String quantity;
         private String expirationDate;
         private String imageURL;
         private Long UserId;
+        @NotBlank
         private String type;
 
 

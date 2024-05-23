@@ -3,6 +3,7 @@ package com.example.cookassistant.domain.user;
 import com.example.cookassistant.domain.ingredient.Ingredient;
 import com.example.cookassistant.domain.like.Like;
 import com.example.cookassistant.domain.reciepe.Recipe;
+import com.example.cookassistant.util.Util;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -10,9 +11,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Comment;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 
 @Entity
@@ -73,6 +78,30 @@ public class User {
         this.nickName = nickName;
         return this;
     }
+
+    //회원이 가지고 있는 권한을 List<GrantAuthority> 형태로 return
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        List<GrantedAuthority> authorities = new ArrayList<>();
+
+        authorities.add(new SimpleGrantedAuthority("USER")); // String이여야함
+
+        return authorities;
+
+    }
+
+    //토큰에 담아낼 user 정보들 추출
+    public Map<String, Object> getAccessTokenClaims() {
+        return Util.mapOf(
+                "id", getId(),
+                "username", getNickName(),
+                "email", getEmail(),
+                "authorities", getAuthorities()
+        );
+    }
+
+
+
+
 
 
 }

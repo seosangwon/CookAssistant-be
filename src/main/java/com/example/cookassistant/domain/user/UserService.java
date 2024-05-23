@@ -1,9 +1,10 @@
 package com.example.cookassistant.domain.user;
 
+import com.example.cookassistant.security.jwt.JwtProvider;
 import com.example.cookassistant.web.dto.UserDto;
-import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -13,7 +14,8 @@ import java.util.Optional;
 public class UserService {
 
     private final UserRepository userRepository;
-    private final BCryptPasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
+    private final JwtProvider jwtProvider;
 
     //유저 생성 createUser
     public UserDto.SaveResponseDto createUser(UserDto.SaveRequestDto requestDto) {
@@ -30,11 +32,10 @@ public class UserService {
                     .build();
 
             User saveUser = userRepository.save(user);
+            UserDto.SaveResponseDto responseDto = new UserDto.SaveResponseDto();
+            responseDto.setId(saveUser.getId());
 
-            return UserDto.SaveResponseDto.builder()
-                    .id(saveUser.getId())
-                    .message("회원가입 완료")
-                    .build();
+            return responseDto;
 
         }
 
@@ -56,7 +57,19 @@ public class UserService {
 //        return
 //
 //    }
-//
+
+    //유저 email로 찾아오기
+    public Optional<User> findByEmail(String email) {
+        return userRepository.findByEmail(email);
+
+    }
+
+    public String getAccessToken(User user) {
+        return jwtProvider.generateAccessToken(user.getAccessTokenClaims(),60*60*2);
+    }
+
+
+
 
 
 

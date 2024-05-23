@@ -1,4 +1,4 @@
-package com.example.cookassistant.util.jwt;
+package com.example.cookassistant.security.jwt;
 
 import com.example.cookassistant.util.Util;
 import io.jsonwebtoken.Jwts;

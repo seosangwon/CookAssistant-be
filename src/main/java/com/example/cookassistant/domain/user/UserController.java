@@ -33,8 +33,12 @@ public class UserController {
 
 
     @GetMapping("/test")
-    public String test(@AuthenticationPrincipal MemberContext memberContext) {
-        return "안녕" + memberContext;
+    public ResponseEntity<RsData> me(@AuthenticationPrincipal MemberContext memberContext) {
+
+        if (memberContext == null) {
+            return Util.spring.responseEntityOf(RsData.failOf(null));
+        }
+        return Util.spring.responseEntityOf(RsData.successOf(memberContext));
     }
 
 

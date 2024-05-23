@@ -1,5 +1,5 @@
 package com.example.cookassistant.jwt;
-import com.example.cookassistant.util.jwt.JwtProvider;
+import com.example.cookassistant.security.jwt.JwtProvider;
 import io.jsonwebtoken.security.Keys;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

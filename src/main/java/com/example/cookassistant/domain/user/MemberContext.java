@@ -1,17 +1,29 @@
 package com.example.cookassistant.domain.user;
 
+import com.fasterxml.jackson.annotation.JsonIncludeProperties;
+import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.User;
+
 
 import java.util.Collection;
+import java.util.Set;
+import java.util.stream.Collectors;
 
-public class MemberContext extends User {
-    public MemberContext(String email, String password, Collection<? extends GrantedAuthority> authorities) {
-        super(email, password, authorities);
+@Getter
+@JsonIncludeProperties({"id","email","authorities"})
+public class MemberContext extends org.springframework.security.core.userdetails.User {
+
+    private final long id;
+    private final String email;
+    private final Set<GrantedAuthority> authorities;
+
+    public MemberContext(User user) {
+        super(user.getEmail(), "", user.getAuthorities());
+        id = user.getId();
+
+        email = user.getEmail();
+        authorities = user.getAuthorities().stream().collect(Collectors.toSet());
+
     }
 
-    public MemberContext(String email, String password, boolean enabled, boolean accountNonExpired, boolean credentialsNonExpired,
-                         boolean accountNonLocked, Collection<? extends GrantedAuthority> authorities) {
-        super(email, password, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, authorities);
-    }
 }

@@ -22,7 +22,7 @@ public class LocalInitData {
         requestDto1.setEmail("user1@naver.com");
         requestDto1.setPassword(password);
         requestDto1.setNickName("nickname1");
-        requestDto1.setRole(UserRole.USER);
+
 
 
 
@@ -30,7 +30,7 @@ public class LocalInitData {
         requestDto2.setEmail("user2@naver.com");
         requestDto2.setPassword(password);
         requestDto2.setNickName("nickname2");
-        requestDto2.setRole(UserRole.USER);
+
 
 
 

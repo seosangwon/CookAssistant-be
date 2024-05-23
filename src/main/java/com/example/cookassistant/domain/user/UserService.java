@@ -1,13 +1,11 @@
 package com.example.cookassistant.domain.user;
 
-import com.example.cookassistant.util.jwt.JwtProvider;
+import com.example.cookassistant.security.jwt.JwtProvider;
 import com.example.cookassistant.web.dto.UserDto;
-import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 ;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.Optional;
 

@@ -32,6 +32,7 @@ public class UserController {
     private final PasswordEncoder passwordEncoder;
 
 
+    @Operation(summary = "백엔드 전용 자체 테스트입니다 ")
     @GetMapping("/test")
     public ResponseEntity<RsData> me(@AuthenticationPrincipal MemberContext memberContext) {
 
@@ -43,13 +44,17 @@ public class UserController {
 
 
     //유저 생성
-    @Operation(summary = "유저 생성 임시 api 입니다")
+    @Operation(summary = "유저 생성 api 입니다")
     @PostMapping("/new")
     public ResponseEntity<?> createUser(@RequestBody @Valid UserDto.SaveRequestDto requestDto, BindingResult bindingResult) {
+
+        if (bindingResult.hasErrors()) {
+            return Util.spring.responseEntityOf(RsData.of("F-1","회원 정보를 올바르게 입력해주세요"));
+        }
+
         UserDto.SaveResponseDto responseDto = userService.createUser(requestDto);
 
-        return ResponseEntity.status(HttpStatus.CREATED)
-                .body(responseDto);
+        return Util.spring.responseEntityOf(RsData.of("S-1","정상적으로 회원가입이 되었습니다",responseDto));
     }
 
     @Operation(summary = "유저 로그인 api 입니다")

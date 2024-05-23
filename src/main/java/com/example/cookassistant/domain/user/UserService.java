@@ -32,11 +32,10 @@ public class UserService {
                     .build();
 
             User saveUser = userRepository.save(user);
+            UserDto.SaveResponseDto responseDto = new UserDto.SaveResponseDto();
+            responseDto.setId(saveUser.getId());
 
-            return UserDto.SaveResponseDto.builder()
-                    .id(saveUser.getId())
-                    .message("회원가입 완료")
-                    .build();
+            return responseDto;
 
         }
 

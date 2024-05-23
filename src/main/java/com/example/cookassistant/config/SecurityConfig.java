@@ -29,7 +29,7 @@ public class SecurityConfig {
         http
                 .authorizeRequests(
                         authorizeRequests -> authorizeRequests
-                                .requestMatchers("/api/v1/users/login", "/api/v1/users/new")
+                                .requestMatchers("/api/v1/users/login", "/api/v1/users/new","/swagger-ui/**", "/v3/api-docs/**")
                                 .permitAll() // 해당 URL에 대해서는 모든 요청 허용
                                 .anyRequest() // 그 외 요청들은 인증받아야함
                                 .authenticated() // 최소자격 : 로그인

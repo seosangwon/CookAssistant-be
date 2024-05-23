@@ -61,13 +61,12 @@ public class Util {
 
             for (String key : map.keySet()) {
                 String value = map.get(key);
-                headers.set(key,value);
+                headers.set(key, value);
             }
 
             return headers;
 
         }
-
 
 
     }
@@ -89,9 +88,6 @@ public class Util {
 
         return map;
     }
-
-
-
 
 
 }

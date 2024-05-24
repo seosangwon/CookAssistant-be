@@ -23,9 +23,9 @@ public class IngredientService {
 
 
     //생성 createIngredient
-    public IngredientDto.SaveResponseDto createIngredient(IngredientDto.SaveRequestDto requestDto) {
+    public IngredientDto.SaveResponseDto createIngredient(IngredientDto.SaveRequestDto requestDto, Long userId) {
 
-        Optional<User> optionalUser = userRepository.findById(requestDto.getUserId());
+        Optional<User> optionalUser = userRepository.findById(userId);
         if (optionalUser.isPresent()) {
             User findUser = optionalUser.get();
             Ingredient newIngredient = Ingredient.builder()
@@ -41,7 +41,6 @@ public class IngredientService {
 
             return IngredientDto.SaveResponseDto.builder()
                     .id(saveIngredient.getId())
-                    .message("식재료 저장이 완료되었습니다")
                     .build();
 
         } else {
@@ -100,7 +99,6 @@ public class IngredientService {
 
             return IngredientDto.UpdateResponseDto.builder()
                     .id(ingredient.getId())
-                    .message("식재료 수정이 완료되었습니다")
                     .build();
 
         } else {
@@ -109,16 +107,15 @@ public class IngredientService {
     }
 
 
-
     //삭제 deleteIngredient
     @Transactional
-    public void ingredientDelete(IngredientDto.DeleteRequestDto requestDto) {
+    public void ingredientDelete(IngredientDto.DeleteRequestDto requestDto, Long userId) {
         Optional<Ingredient> optionalIngredient = ingredientRepository.findById(requestDto.getIngredientId());
 
 
         if (optionalIngredient.isPresent()) {
             Ingredient ingredient = optionalIngredient.get();
-            User user = userRepository.findById(requestDto.getUserId())
+            User user = userRepository.findById(userId)
                     .orElseThrow(() -> new IllegalArgumentException("해당 유저가 없습니다"));
             List<Ingredient> ingredients = user.getIngredients();
             ingredients.remove(ingredient);

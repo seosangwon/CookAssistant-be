@@ -49,12 +49,12 @@ public class UserController {
     public ResponseEntity<?> createUser(@RequestBody @Valid UserDto.SaveRequestDto requestDto, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
-            return Util.spring.responseEntityOf(RsData.of("F-1","회원 정보를 올바르게 입력해주세요"));
+            return Util.spring.responseEntityOf(RsData.of("F-1", "회원 정보를 올바르게 입력해주세요", bindingResult.getAllErrors()));
         }
 
         UserDto.SaveResponseDto responseDto = userService.createUser(requestDto);
 
-        return Util.spring.responseEntityOf(RsData.of("S-1","정상적으로 회원가입이 되었습니다",responseDto));
+        return Util.spring.responseEntityOf(RsData.of("S-1", "정상적으로 회원가입이 되었습니다", responseDto));
     }
 
     @Operation(summary = "유저 로그인 api 입니다")
@@ -66,7 +66,7 @@ public class UserController {
 
         try {
             if (bindingResult.hasErrors()) {
-                return Util.spring.responseEntityOf(RsData.of("F-3", "email과 password 모두 입력해주세요 "));
+                return Util.spring.responseEntityOf(RsData.of("F-3", "로그인 유효성 검증 실패 ", bindingResult.getAllErrors()));
             }
         } catch (Exception e) {
             throw new IllegalArgumentException("로그인시 eamil과 password 모두 입력해주세요");
@@ -83,14 +83,29 @@ public class UserController {
         }
 
 
-        log.debug("Util.json.toStr(user.getAccessTokenClaims()) : "+Util.json.toStr(user.getAccessTokenClaims()));
+        log.debug("Util.json.toStr(user.getAccessTokenClaims()) : " + Util.json.toStr(user.getAccessTokenClaims()));
         String accessToken = userService.getAccessToken(user);
 
 
-        return Util.spring.responseEntityOf(RsData.of("S-1", "로그인 성공 , AccessToken을 발급합니다", Util.mapOf("accessToken",accessToken)),
+        return Util.spring.responseEntityOf(RsData.of("S-1", "로그인 성공 , AccessToken을 발급합니다", Util.mapOf("accessToken", accessToken)),
                 Util.spring.httpHeadersOf("Authentication", accessToken)
         );
 
 
     }
+
+    @Operation(summary = "자신의 myPage 조회 API 입니다")
+    @GetMapping("/myPage")
+    public ResponseEntity<RsData> getMyPage(@AuthenticationPrincipal MemberContext memberContext) {
+        UserDto.UserDetailsDto responseDto = new UserDto.UserDetailsDto();
+        responseDto.setUserId(memberContext.getId());
+        responseDto.setEmail(memberContext.getEmail());
+
+
+        return Util.spring.responseEntityOf(RsData.successOf(responseDto));
+
+
+    }
+
+
 }

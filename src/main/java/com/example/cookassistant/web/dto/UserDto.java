@@ -42,6 +42,9 @@ public class UserDto {
     }
 
     @Data
-    public static class LoginResponseDto {
+    public static class UserDetailsDto {
+        private Long userId;
+        private String email;
+
     }
 }

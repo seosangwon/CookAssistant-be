@@ -19,11 +19,11 @@ public class UserDto {
 
     @Data
     public static class SaveRequestDto {
-        @NotEmpty
+        @NotBlank
         private String nickName;
-        @NotEmpty @Email
+        @NotBlank @Email
         private String email;
-        @NotEmpty
+        @NotBlank
         private String password;
         private UserRole role = UserRole.USER;
 
@@ -43,6 +43,7 @@ public class UserDto {
 
     @Data
     public static class UserDetailsDto {
+
         private Long userId;
         private String email;
 

@@ -70,6 +70,6 @@ public class Recipe {
         this.name=requestDto.getName();
         this.content= requestDto.getContent();
         this.imageURL= requestDto.getImageURL();
-        this.createdAt=requestDto.getCreatedAt();
+        this.createdAt = LocalDateTime.now();
     }
 }

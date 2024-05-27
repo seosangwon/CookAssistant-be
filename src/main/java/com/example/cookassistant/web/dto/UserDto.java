@@ -19,11 +19,11 @@ public class UserDto {
 
     @Data
     public static class SaveRequestDto {
-        @NotBlank
+        @NotBlank(message = "닉네임을 입력해주세요")
         private String nickName;
-        @NotBlank @Email
+        @NotBlank @Email(message = "이메일 양식에 맞춰주세요")
         private String email;
-        @NotBlank
+        @NotBlank(message = "패스워드를 입력해주세요")
         private String password;
         private UserRole role = UserRole.USER;
 
@@ -33,9 +33,9 @@ public class UserDto {
 
     @Data
     public static class LoginRequestDto {
-        @Email @NotBlank
+        @Email @NotBlank(message = "email 양식에 맞춰주세요")
         private String email;
-        @NotBlank
+        @NotBlank(message = "패스워드를 입력해주세요")
         private String password;
 
 

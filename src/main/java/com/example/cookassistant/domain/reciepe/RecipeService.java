@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -24,15 +25,15 @@ public class RecipeService {
     private final IngredientRepository ingredientRepository;
 
     //레시피 생성 createRecipe : 파이썬으로부터 받는 정보 (LLM을 거친 완성된 레시피)
-    public RecipeDto.SaveResponseDto createRecipe(RecipeDto.SaveRequestDto requestDto) {
-        Optional<User> optionalUser = userRepository.findById(requestDto.getUserId());
+    public RecipeDto.SaveResponseDto createRecipe(RecipeDto.SaveRequestDto requestDto , Long userId) {
+        Optional<User> optionalUser = userRepository.findById(userId);
         if (optionalUser.isPresent()) {
             User findUser = optionalUser.get();
             Recipe recipe = Recipe.builder()
                     .name(requestDto.getName())
                     .content(requestDto.getName())
                     .imageURL(requestDto.getImageURL())
-                    .createdAt(requestDto.getCreatedAt())
+                    .createdAt(LocalDateTime.now())
                     .user(findUser)
                     .build();
 
@@ -59,7 +60,6 @@ public class RecipeService {
 
             return RecipeDto.UpdateResponseDto.builder()
                     .id(findRecipe.getId())
-                    .message("레시피 수정이 완료되었습니다")
                     .build();
         } else {
             throw new EntityNotFoundException("해당 레시피가 존재하지 않습니다");
@@ -68,12 +68,12 @@ public class RecipeService {
     }
 
     //레시피 삭제 deleteRecipe
-    public void deleteRecipe(RecipeDto.DeleteRequestDto requestDto) {
+    public void deleteRecipe(RecipeDto.DeleteRequestDto requestDto,Long userId) {
         Optional<Recipe> optionalRecipe = recipeRepository.findById(requestDto.getRecipeId());
 
         if (optionalRecipe.isPresent()) {
             Recipe findRecipe = optionalRecipe.get();
-            User user = userRepository.findById(requestDto.getUserId()).orElseThrow(() -> new EntityNotFoundException("해당 유저가 없습니다"));
+            User user = userRepository.findById(userId).orElseThrow(() -> new EntityNotFoundException("해당 유저가 없습니다"));
 
             List<Recipe> recipes = user.getRecipes();
             recipes.remove(findRecipe);

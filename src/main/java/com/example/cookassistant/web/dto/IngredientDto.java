@@ -14,12 +14,12 @@ public class IngredientDto {
     @Data
     public static class SaveRequestDto {
 
-        @NotBlank
+        @NotBlank(message = "이름을 입력해주세요")
         private String name;
         private String quantity;
         private String expirationDate;
         private String imageURL;
-        @NotBlank
+        @NotBlank(message = "타입을 입력해주세요")
         private String type;
 
 
@@ -65,20 +65,20 @@ public class IngredientDto {
 
     @Data
     public static class DeleteRequestDto {
-        @NotNull
+        @NotNull(message = "재료Id를 입력해주세요")
         private Long ingredientId;
     }
 
 
     @Data
     public static class UpdateRequestDto {
-        @NotNull
+        @NotNull(message = "id를 입력해주세요")
         private Long id;
         private String name;
         private String quantity;
         private String expirationDate;
         private String imageURL;
-        @NotBlank
+        @NotBlank(message = "type을 입력해주세요")
         private String type;
 
     }

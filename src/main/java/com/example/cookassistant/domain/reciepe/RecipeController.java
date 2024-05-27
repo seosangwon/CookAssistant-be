@@ -1,5 +1,8 @@
 package com.example.cookassistant.domain.reciepe;
 
+import com.example.cookassistant.base.RsData;
+import com.example.cookassistant.domain.user.MemberContext;
+import com.example.cookassistant.util.Util;
 import com.example.cookassistant.web.dto.RecipeDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -10,9 +13,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.lang.reflect.Member;
 import java.util.List;
 
 @Tag(name = "Recipe API", description = "레시피 관련 api 입니다")
@@ -27,10 +32,16 @@ public class RecipeController {
     //레시피 생성 createRecipe
     @Operation(summary = "레시피 생성 api 입니다")
     @PostMapping("/new")
-    public ResponseEntity<?> createRecipe(@RequestBody @Valid RecipeDto.SaveRequestDto requestDto, BindingResult bindingResult) {
-        RecipeDto.SaveResponseDto saveResponseDto = recipeService.createRecipe(requestDto);
-        return ResponseEntity.status(HttpStatus.CREATED)
-                .body(saveResponseDto);
+    public ResponseEntity<RsData> createRecipe(@AuthenticationPrincipal MemberContext memberContext, @RequestBody @Valid RecipeDto.SaveRequestDto requestDto,
+                                               BindingResult bindingResult) {
+
+        if (bindingResult.hasErrors()) {
+            return Util.spring.responseEntityOf(RsData.of("F-1", "레시피 생성 유효성 검증 실패", bindingResult.getAllErrors()));
+        }
+
+        RecipeDto.SaveResponseDto saveResponseDto = recipeService.createRecipe(requestDto , memberContext.getId());
+        return Util.spring.responseEntityOf(RsData.successOf(saveResponseDto));
+
 
 
     }

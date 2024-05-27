@@ -1,6 +1,8 @@
 package com.example.cookassistant.web.dto;
 
 import com.example.cookassistant.domain.reciepe.Recipe;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Data;
 
@@ -11,11 +13,11 @@ public class RecipeDto {
 
     @Data
     public static class SaveRequestDto {
-        private Long userId;
+        @NotBlank
         private String name;
+        @NotBlank
         private String content;
         private String imageURL;
-        private LocalDateTime createdAt; // 빼야 하는거 아닌가? , 프론트한테 시각을 받을 일이 없음
 
 
     }
@@ -61,15 +63,14 @@ public class RecipeDto {
 
     @Data
     public static class UpdateResponseDto {
-       private Long id;
-       private String message;
+        private Long id;
+        private String message;
 
-       @Builder
-       public UpdateResponseDto(Long id, String message) {
+        @Builder
+        public UpdateResponseDto(Long id, String message) {
             this.id = id;
             this.message = message;
         }
-
 
 
     }

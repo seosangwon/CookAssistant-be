@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -24,15 +25,15 @@ public class RecipeService {
     private final IngredientRepository ingredientRepository;
 
     //레시피 생성 createRecipe : 파이썬으로부터 받는 정보 (LLM을 거친 완성된 레시피)
-    public RecipeDto.SaveResponseDto createRecipe(RecipeDto.SaveRequestDto requestDto) {
-        Optional<User> optionalUser = userRepository.findById(requestDto.getUserId());
+    public RecipeDto.SaveResponseDto createRecipe(RecipeDto.SaveRequestDto requestDto , Long userId) {
+        Optional<User> optionalUser = userRepository.findById(userId);
         if (optionalUser.isPresent()) {
             User findUser = optionalUser.get();
             Recipe recipe = Recipe.builder()
                     .name(requestDto.getName())
                     .content(requestDto.getName())
                     .imageURL(requestDto.getImageURL())
-                    .createdAt(requestDto.getCreatedAt())
+                    .createdAt(LocalDateTime.now())
                     .user(findUser)
                     .build();
 

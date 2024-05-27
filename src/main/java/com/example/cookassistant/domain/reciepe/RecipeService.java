@@ -60,7 +60,6 @@ public class RecipeService {
 
             return RecipeDto.UpdateResponseDto.builder()
                     .id(findRecipe.getId())
-                    .message("레시피 수정이 완료되었습니다")
                     .build();
         } else {
             throw new EntityNotFoundException("해당 레시피가 존재하지 않습니다");
@@ -69,12 +68,12 @@ public class RecipeService {
     }
 
     //레시피 삭제 deleteRecipe
-    public void deleteRecipe(RecipeDto.DeleteRequestDto requestDto) {
+    public void deleteRecipe(RecipeDto.DeleteRequestDto requestDto,Long userId) {
         Optional<Recipe> optionalRecipe = recipeRepository.findById(requestDto.getRecipeId());
 
         if (optionalRecipe.isPresent()) {
             Recipe findRecipe = optionalRecipe.get();
-            User user = userRepository.findById(requestDto.getUserId()).orElseThrow(() -> new EntityNotFoundException("해당 유저가 없습니다"));
+            User user = userRepository.findById(userId).orElseThrow(() -> new EntityNotFoundException("해당 유저가 없습니다"));
 
             List<Recipe> recipes = user.getRecipes();
             recipes.remove(findRecipe);

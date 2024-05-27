@@ -81,18 +81,15 @@ public class RecipeDto {
         private String name;
         private String content;
         private String imageURL;
-        private LocalDateTime createdAt;
+
     }
 
 
-    @Data
-    public static class DeleteResponseDto {
-        private String message;
-    }
+
 
     @Data
     public static class DeleteRequestDto {
-        private Long userId;
+        @NotNull(message = "삭제할 레시피를 입력해주세요")
         private Long recipeId;
     }
 }

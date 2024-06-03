@@ -30,19 +30,29 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
     private final UserService userService;
 
 
+
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String bearerToken = request.getHeader("Authorization");
 
-        if (bearerToken != null) {
-            String token = bearerToken.substring("Bearer".length());
 
+        if (bearerToken != null) {
+            String token = bearerToken.substring("Bearer ".length());
+
+            //1차 체크 (토큰 정보가 변조되지 않았는지 확인)
             if (jwtProvider.verify(token)) {
                 Map<String, Object> claims = jwtProvider.getClaims(token);
-                String email = (String) claims.get("email");
-                User user = userService.findByEmail(email).orElseThrow(() -> new UsernameNotFoundException("%s Username not found".formatted(email)));
 
-                forceAuthentication(user);
+                User user = userService.getByUserEmail_cached((String) claims.get("email"));
+                log.info("cache로부터 유저 찾아오기"+user.getEmail());
+
+                //2차체크 DB에 있는 accessToken이랑 일치하는지 확인 (화이트 리스트 체크 방법)
+                if (userService.verifyWithWhiteList(user, token)) {
+                    log.info("화이트리스트2차체크 실행 ");
+                    forceAuthentication(user);
+                }
+
+
 
 
             }

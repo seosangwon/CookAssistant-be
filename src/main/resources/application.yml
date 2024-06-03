@@ -3,10 +3,6 @@ spring:
   profiles:
     default: local
 
-custom:
-  jwt:
-    secretKey: ${JWT_SECRET_KEY}
-
 
 
 

@@ -1,8 +1,7 @@
-
 spring:
   config:
     activate:
-      on-profile: local # 프로파일 설정
+      on-profile: test # 프로파일 설정
 
   datasource:
     url: jdbc:h2:tcp://localhost/~/CookAssistant
@@ -30,12 +29,6 @@ spring:
     level:
       root: DEBUG
 
-
 custom:
   jwt:
-    secretKey: ${JWT_SECRET_KEY}
-
-
-
-
-
+    secretKey: cook-assistant-cook-assistant-cook-assistant-cook-assistant

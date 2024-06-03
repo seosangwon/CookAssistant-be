@@ -43,6 +43,10 @@ public class User {
     @Column(nullable = false)
     private String password;
 
+    @Column(columnDefinition = "TEXT")
+    private String accessToken;
+
+
 
     @Enumerated(EnumType.STRING)
     @Column(name = "role", nullable = false)
@@ -100,8 +104,7 @@ public class User {
     }
 
 
-
-
-
-
+    public void setAccessToken(String accessToken) {
+        this.accessToken = accessToken;
+    }
 }

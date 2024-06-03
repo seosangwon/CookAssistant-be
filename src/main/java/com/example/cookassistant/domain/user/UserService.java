@@ -1,5 +1,6 @@
 package com.example.cookassistant.domain.user;
 
+import com.example.cookassistant.config.AppConfig;
 import com.example.cookassistant.security.jwt.JwtProvider;
 import com.example.cookassistant.web.dto.UserDto;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
+import java.util.Map;
 import java.util.Optional;
 
 @Slf4j
@@ -77,8 +79,21 @@ public class UserService {
         return user.getAccessToken().equals(token);
     }
 
+
+
     @Cacheable("user")
-    public User getByUserEmail_cached(String email) {
-        return findByEmail(email).orElse(null);
+    public Map<String, Object> getUserMapByUserEmail__cached(String email) {
+        User user = userRepository.findByEmail(email).orElse(null);
+
+        return user.toMap();
     }
+
+    public User getByUserEmail_cached(String email) {
+        UserService thisObj = (UserService) AppConfig.getContext().getBean("userService");
+        Map<String, Object> userMap = thisObj.getUserMapByUserEmail__cached(email);
+
+        return User.fromMap(userMap);
+    }
+
+
 }

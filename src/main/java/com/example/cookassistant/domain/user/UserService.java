@@ -61,7 +61,7 @@ public class UserService {
     @Transactional
     public String getAccessToken(User user) {
         String accessToken = user.getAccessToken();
-        if (StringUtils.hasLength(accessToken) == false) {
+        if (StringUtils.hasLength(accessToken) == false || jwtProvider.verify(accessToken) == false ) {
             accessToken = jwtProvider.generateAccessToken(user.getAccessTokenClaims(), 60 * 60);
 
             user.setAccessToken(accessToken);
@@ -73,8 +73,8 @@ public class UserService {
 
     public boolean verifyWithWhiteList(User user, String token) {
         log.info("verifyWithWhiteList 메서드 실행  : 유저 이메일:"+user.getEmail());
-        log.info("verifyWithWhiteList 메서드 실행  : 유저 토큰:"+user.getAccessToken());
-        log.info("verifyWithWhiteList 메서드 실행  : token:"+token);
+        log.info("verifyWithWhiteList 메서드 실행  : DB 저장 토큰:"+user.getAccessToken());
+        log.info("verifyWithWhiteList 메서드 실행  : Request token:"+token);
         log.info("equals결과 : "+user.getAccessToken().equals(token));
         return user.getAccessToken().equals(token);
     }

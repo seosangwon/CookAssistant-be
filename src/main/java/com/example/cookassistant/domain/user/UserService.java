@@ -3,6 +3,7 @@ package com.example.cookassistant.domain.user;
 import com.example.cookassistant.config.AppConfig;
 import com.example.cookassistant.security.jwt.JwtProvider;
 import com.example.cookassistant.web.dto.UserDto;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 ;
 import lombok.extern.slf4j.Slf4j;
@@ -13,6 +14,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 
 import java.util.Map;
 import java.util.Optional;
@@ -96,4 +98,13 @@ public class UserService {
     }
 
 
+    @CacheEvict("user")
+    public String logout(String email) {
+        User user = userRepository.findByEmail(email).orElseThrow(()-> new EntityNotFoundException("해당 유저를 찾을 수 없습니다" ));
+        user.setAccessToken(null);
+        userRepository.save(user);
+
+        return "로그아웃 완료";
+
+    }
 }

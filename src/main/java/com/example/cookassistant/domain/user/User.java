@@ -11,6 +11,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Comment;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.data.redis.core.TimeToLive;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
@@ -45,6 +46,7 @@ public class User {
 
     @Column(columnDefinition = "TEXT")
     private String accessToken;
+
 
 
     @Enumerated(EnumType.STRING)

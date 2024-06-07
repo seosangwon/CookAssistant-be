@@ -11,6 +11,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Comment;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.data.redis.core.TimeToLive;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
@@ -43,6 +44,10 @@ public class User {
     @Column(nullable = false)
     private String password;
 
+    @Column(columnDefinition = "TEXT")
+    private String accessToken;
+
+
 
     @Enumerated(EnumType.STRING)
     @Column(name = "role", nullable = false)
@@ -58,13 +63,55 @@ public class User {
     private List<Recipe> recipes = new ArrayList<>();
 
 
-
     @Builder
-    public User(String nickName, String email, String password, UserRole role) {
+    public User(Long id,String nickName, String email, String password, UserRole role,String accessToken) {
+        this.id= id;
         this.nickName = nickName;
         this.email = email;
         this.password = password;
         this.role = role;
+        this.accessToken = accessToken;
+
+
+    }
+
+    public static User fromMap(Map<String, Object> userMap) {
+        return fromJwtClaims(userMap);
+    }
+
+    public  Map<String, Object> toMap() {
+        return Util.mapOf(
+                "id", getId(),
+                "username", getNickName(),
+                "email", getEmail(),
+                "accessToken", getAccessToken(),
+                "authorities", getAuthorities()
+        );
+    }
+
+
+    private static User fromJwtClaims(Map<String, Object> jwtClaims) {
+        long id = 0;
+
+        if (jwtClaims.get("id") instanceof Long) {
+
+            id = (long) jwtClaims.get("id");
+
+        } else if (jwtClaims.get("id") instanceof Integer) {
+            id = (long) (int) jwtClaims.get("id");
+
+        }
+
+        String username = (String) jwtClaims.get("username");
+        String email = (String) jwtClaims.get("email");
+        String accessToken = (String) jwtClaims.get("accessToken");
+
+        return User.builder()
+                .id(id)
+                .nickName(username)
+                .email(email)
+                .accessToken(accessToken)
+                .build();
 
 
     }
@@ -95,13 +142,15 @@ public class User {
                 "id", getId(),
                 "username", getNickName(),
                 "email", getEmail(),
+                "accessToken", getAccessToken(),
                 "authorities", getAuthorities()
         );
     }
 
 
-
-
+    public void setAccessToken(String accessToken) {
+        this.accessToken = accessToken;
+    }
 
 
 }

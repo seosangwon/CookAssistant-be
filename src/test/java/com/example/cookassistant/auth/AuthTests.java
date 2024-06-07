@@ -39,7 +39,7 @@ public class AuthTests {
                         post("/api/v1/users/login")
                                 .content("""
                                         {
-                                            "email"   : "email1",
+                                            "email" : "user1@naver.com",
                                             "password": "1234"
                                         }
                                         """.stripIndent())

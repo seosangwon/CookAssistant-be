@@ -107,5 +107,11 @@ public class UserController {
 
     }
 
+    @Operation(summary = "유저 로그아웃 API 입니다 ")
+    @PostMapping("/logout")
+    public ResponseEntity<RsData> logout(@AuthenticationPrincipal MemberContext memberContext) {
+        String msg=userService.logout(memberContext.getEmail());
 
+        return Util.spring.responseEntityOf(RsData.successOf(msg));
+    }
 }

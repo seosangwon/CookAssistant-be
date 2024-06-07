@@ -1,14 +1,25 @@
 package com.example.cookassistant.domain.user;
 
+import com.example.cookassistant.config.AppConfig;
 import com.example.cookassistant.security.jwt.JwtProvider;
 import com.example.cookassistant.web.dto.UserDto;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 ;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 
+import java.util.Map;
 import java.util.Optional;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class UserService {
@@ -42,21 +53,6 @@ public class UserService {
 
     }
 
-    //유저 로그인
-//    public UserDto.LoginResponseDto loginUser(UserDto.LoginRequestDto requestDto) {
-//        Optional<User> optionalUser = userRepository.findByEmail(requestDto.getEmail());
-//        if (optionalUser.isPresent()) {
-//            User findUser = optionalUser.get();
-//            if (!passwordEncoder.matches(requestDto.getPassword(), findUser.getPassword())) {
-//                throw new IllegalArgumentException("잘못된 비밀번호 입니다 ");
-//            }
-//        } else {
-//            throw new EntityNotFoundException("해당 이메일로 가입한 유저가 없습니다 ");
-//        }
-//
-//        return
-//
-//    }
 
     //유저 email로 찾아오기
     public Optional<User> findByEmail(String email) {
@@ -64,13 +60,51 @@ public class UserService {
 
     }
 
+    @Transactional
     public String getAccessToken(User user) {
-        return jwtProvider.generateAccessToken(user.getAccessTokenClaims(),60*60*2);
+        String accessToken = user.getAccessToken();
+        if (StringUtils.hasLength(accessToken) == false || jwtProvider.verify(accessToken) == false ) {
+            accessToken = jwtProvider.generateAccessToken(user.getAccessTokenClaims(), 60 * 60);
+
+            user.setAccessToken(accessToken);
+
+        }
+
+        return accessToken;
+    }
+
+    public boolean verifyWithWhiteList(User user, String token) {
+        log.info("verifyWithWhiteList 메서드 실행  : 유저 이메일:"+user.getEmail());
+        log.info("verifyWithWhiteList 메서드 실행  : DB 저장 토큰:"+user.getAccessToken());
+        log.info("verifyWithWhiteList 메서드 실행  : Request token:"+token);
+        log.info("equals결과 : "+user.getAccessToken().equals(token));
+        return user.getAccessToken().equals(token);
     }
 
 
 
+    @Cacheable("user")
+    public Map<String, Object> getUserMapByUserEmail__cached(String email) {
+        User user = userRepository.findByEmail(email).orElse(null);
+
+        return user.toMap();
+    }
+
+    public User getByUserEmail_cached(String email) {
+        UserService thisObj = (UserService) AppConfig.getContext().getBean("userService");
+        Map<String, Object> userMap = thisObj.getUserMapByUserEmail__cached(email);
+
+        return User.fromMap(userMap);
+    }
 
 
+    @CacheEvict("user")
+    public String logout(String email) {
+        User user = userRepository.findByEmail(email).orElseThrow(()-> new EntityNotFoundException("해당 유저를 찾을 수 없습니다" ));
+        user.setAccessToken(null);
+        userRepository.save(user);
 
+        return "로그아웃 완료";
+
+    }
 }

@@ -10,6 +10,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.web.servlet.tags.form.TextareaTag;
+import org.w3c.dom.Text;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -29,7 +31,7 @@ public class Recipe {
     private String name;
 
 
-    @Column(nullable = false)
+    @Column(nullable = false , columnDefinition = "TEXT")
     @Lob
     private String content;
 

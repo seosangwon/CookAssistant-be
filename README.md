@@ -34,3 +34,16 @@ RAG는 다음과 같은 특징을 가지고 있습니다:<br>
 <img src="https://private-user-images.githubusercontent.com/39723498/348605774-fb6e5e5c-915c-45bf-8eb4-51d45467515d.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MjEwMjE1OTAsIm5iZiI6MTcyMTAyMTI5MCwicGF0aCI6Ii8zOTcyMzQ5OC8zNDg2MDU3NzQtZmI2ZTVlNWMtOTE1Yy00NWJmLThlYjQtNTFkNDU0Njc1MTVkLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNDA3MTUlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjQwNzE1VDA1MjgxMFomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTM1YWI3MzBjZTg4Y2IxZWMxMDMyNzgxNjY0Yjc0ZDFmYzIxYTY2NTFiMmYzZjUyMTlhZTliNTUyMjRjMTA1NmQmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JmFjdG9yX2lkPTAma2V5X2lkPTAmcmVwb19pZD0wIn0.UuCWGrnrTB3t82mw27tDdgqW5YGLL_rDIL93X8WghHo ">
 
 
+### Infra
+- **EC2**: 애플리케이션 서버 호스팅
+- **RDS**: 관계형 데이터베이스 서비스
+- **Docker**: 도커를 이용하여 2개의 서버를 컨테이너로 배포 
+
+
+### SpringBoot
+- **Java**, **JPA**, **Spring Framework**, **Redis**: 유저 인증/인가 처리, 식재료 및 레시피 관리 등 전반적인 안드로이드 API를 관리
+
+### Langchain
+- **Python**, **Langchain**, **Langserve**, **Pinecone**: Langchain 프레임워크로 구현되어 있으며, 레시피 생성을 담당. 벡터 DB로부터 데이터를 검색해 RAG를 진행
+
+

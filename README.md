@@ -4,6 +4,8 @@
 
 ## 주요 기능
 
+<img src="https://private-user-images.githubusercontent.com/39723498/348997833-2441862d-b3c8-4a6c-b191-6c3d70696477.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MjExMTc2OTUsIm5iZiI6MTcyMTExNzM5NSwicGF0aCI6Ii8zOTcyMzQ5OC8zNDg5OTc4MzMtMjQ0MTg2MmQtYjNjOC00YTZjLWIxOTEtNmMzZDcwNjk2NDc3LnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNDA3MTYlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjQwNzE2VDA4MDk1NVomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTQ0N2Q0MDg5ZmQ3YjQ0YmY1M2E3ZTQ4ZDgxYjFjZDc0MTNhZjVkY2U2YjQwMGY3MDBlMGQ0ZmY5YWZkNDZhYjQmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JmFjdG9yX2lkPTAma2V5X2lkPTAmcmVwb19pZD0wIn0.DaHqA4Nm4_0JVZRZ4yHL_gf0tY_V9pSKB3-AxJaZMLI">
+
 - **홈:** 최신 레시피와 추천 레시피를 한눈에 볼 수 있습니다.<br>
 - **커뮤니티:** 사용자들이 레시피와 요리 팁을 공유하고 소통할 수 있는 공간입니다.<br>
 - **레시피 제작:** RAG(Recipe Assembly Generator)를 사용하여 사용자가 원하는 재료로 레시피를 쉽게 생성할 수 있습니다.<br>

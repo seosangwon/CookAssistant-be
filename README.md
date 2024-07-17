@@ -4,7 +4,7 @@
 
 ## 주요 기능
 
-<img src="https://private-user-images.githubusercontent.com/39723498/348997833-2441862d-b3c8-4a6c-b191-6c3d70696477.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MjExMTc2OTUsIm5iZiI6MTcyMTExNzM5NSwicGF0aCI6Ii8zOTcyMzQ5OC8zNDg5OTc4MzMtMjQ0MTg2MmQtYjNjOC00YTZjLWIxOTEtNmMzZDcwNjk2NDc3LnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNDA3MTYlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjQwNzE2VDA4MDk1NVomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTQ0N2Q0MDg5ZmQ3YjQ0YmY1M2E3ZTQ4ZDgxYjFjZDc0MTNhZjVkY2U2YjQwMGY3MDBlMGQ0ZmY5YWZkNDZhYjQmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JmFjdG9yX2lkPTAma2V5X2lkPTAmcmVwb19pZD0wIn0.DaHqA4Nm4_0JVZRZ4yHL_gf0tY_V9pSKB3-AxJaZMLI">
+![그림1](https://github.com/user-attachments/assets/2441862d-b3c8-4a6c-b191-6c3d70696477)
 
 - **홈:** 최신 레시피와 추천 레시피를 한눈에 볼 수 있습니다.<br>
 - **커뮤니티:** 사용자들이 레시피와 요리 팁을 공유하고 소통할 수 있는 공간입니다.<br>
@@ -17,7 +17,7 @@
 
 ## RAG (Retriever-Augmented-Generator)
 
-<img src="https://private-user-images.githubusercontent.com/39723498/348604921-850fd42f-69de-4047-9acb-bab2ad2f5d68.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MjExMTIzNTEsIm5iZiI6MTcyMTExMjA1MSwicGF0aCI6Ii8zOTcyMzQ5OC8zNDg2MDQ5MjEtODUwZmQ0MmYtNjlkZS00MDQ3LTlhY2ItYmFiMmFkMmY1ZDY4LnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNDA3MTYlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjQwNzE2VDA2NDA1MVomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTQyNmJhNzc2YjNkOTI2ZDljOTZmNDUxMTQxNTgxMDJhNjczMDU5M2Q1ZGRhYTlmMjliMGYzNGNjZDcwZjcwOWYmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JmFjdG9yX2lkPTAma2V5X2lkPTAmcmVwb19pZD0wIn0.IrX1yWPceEK5bcnv7JfjqwKYflnNJ_zmLhkXDUVu0CA">
+<img width="704" alt="image" src="https://github.com/user-attachments/assets/850fd42f-69de-4047-9acb-bab2ad2f5d68">
 Cook Assistant에서는 NLP 모델에서 질문 응답 및 정보 검색의 능력을 향상시키기 위해 RAG(Retriever-Augmented-Generator) 기술을 사용합니다.<br><br>
 
 RAG는 다음과 같은 특징을 가지고 있습니다:<br>
@@ -33,7 +33,8 @@ RAG는 다음과 같은 특징을 가지고 있습니다:<br>
 이 기술을 통해 Cook Assistant는 사용자에게 보다 정확하고 다양한 비건 레시피 정보를 제공합니다.
 
 ### System Architecture
-<img src="https://private-user-images.githubusercontent.com/39723498/348605774-fb6e5e5c-915c-45bf-8eb4-51d45467515d.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MjExMTIzODksIm5iZiI6MTcyMTExMjA4OSwicGF0aCI6Ii8zOTcyMzQ5OC8zNDg2MDU3NzQtZmI2ZTVlNWMtOTE1Yy00NWJmLThlYjQtNTFkNDU0Njc1MTVkLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNDA3MTYlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjQwNzE2VDA2NDEyOVomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPWFmYjg1OGIzZTYxYTk0N2EyMDlkOTU4ZjE4YjQxYjcxYmIzZDhiODg2MjM0ZmFjNmU4ZDFhZDJjZmY4YmFiODYmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JmFjdG9yX2lkPTAma2V5X2lkPTAmcmVwb19pZD0wIn0.5Jx8Jeb91FvsBjA0lp-AESQAiXN1XXMFl3e21_mD2Ec ">
+<img width="749" alt="image" src="https://github.com/user-attachments/assets/fb6e5e5c-915c-45bf-8eb4-51d45467515d">
+
 
 
 ### Infra
@@ -49,11 +50,13 @@ RAG는 다음과 같은 특징을 가지고 있습니다:<br>
 - **Python**, **Langchain**, **Langserve**, **Pinecone**: Langchain 프레임워크로 구현되어 있으며, 레시피 생성을 담당. 벡터 DB로부터 데이터를 검색해 RAG를 진행
 
 ### ERD
-<img src="https://private-user-images.githubusercontent.com/39723498/348607321-6366570b-691f-4ccb-b8c4-8cc0fa54be04.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MjExMTI0MTEsIm5iZiI6MTcyMTExMjExMSwicGF0aCI6Ii8zOTcyMzQ5OC8zNDg2MDczMjEtNjM2NjU3MGItNjkxZi00Y2NiLWI4YzQtOGNjMGZhNTRiZTA0LnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNDA3MTYlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjQwNzE2VDA2NDE1MVomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPWY0Y2RmMTA2NDczNDc0MmNhNTI1NGRiZjhhOWVkMzNjZjA3NmY1ZjU3ODExMjBmMWY4NTRiNDMzZmU5ZTI0NWEmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JmFjdG9yX2lkPTAma2V5X2lkPTAmcmVwb19pZD0wIn0.pWCppvneU_OZQcGOmDzWyMyiqWHfw0Nkf5SX84AwrNU">
+<img width="1043" alt="스크린샷 2024-07-15 오후 2 39 48" src="https://github.com/user-attachments/assets/6366570b-691f-4ccb-b8c4-8cc0fa54be04">
+
 
 
 ### Front
-<img src="https://private-user-images.githubusercontent.com/39723498/348607539-3326c274-8d06-4d10-b385-d64512ee8d5f.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MjExMTI0MzIsIm5iZiI6MTcyMTExMjEzMiwicGF0aCI6Ii8zOTcyMzQ5OC8zNDg2MDc1MzktMzMyNmMyNzQtOGQwNi00ZDEwLWIzODUtZDY0NTEyZWU4ZDVmLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNDA3MTYlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjQwNzE2VDA2NDIxMlomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTljYzE0YzkwNDRkMWRiYzI3NmQ4ZDkwYmVhN2ViNDg5ZGU2ZjBkYzc2M2ViYWM1ZWZlZmIzNDViMTU5NzkwYjYmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JmFjdG9yX2lkPTAma2V5X2lkPTAmcmVwb19pZD0wIn0.aY3f5A2dHrAfEl_IxnW5RsGQXxqwvxLeb8vrevzntyM">
+<img width="890" alt="스크린샷 2024-07-15 오후 2 41 57" src="https://github.com/user-attachments/assets/3326c274-8d06-4d10-b385-d64512ee8d5f">
+
 
 
 
